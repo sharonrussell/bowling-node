@@ -1,9 +1,11 @@
-function Game() {}
+var score;
 
-var score = 0;
+function Game() {
+	score = 0;
+}
 
 Game.prototype.roll = function(pins) {
-	score = score + pins;
+	score += pins;
 };
 
 Game.prototype.getScore = function(){
