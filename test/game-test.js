@@ -4,7 +4,7 @@ var Game = require('../src/game');
 
 describe('Game', function() {
 
-  	it('Game score should be 0 when game is over if roll all gutter balls', function() {
+	it('Game score should be 0 when game is over if roll all gutter balls', function() {
     	var game = new Game();
 
 		for(var i = 0; i < 20; i++){
@@ -12,19 +12,19 @@ describe('Game', function() {
 		}
 
     	expect(game.getScore()).to.equal(0);
-  	});
+	});
 
-  	it('Game score should be 20 when game is over if roll all 1s', function() {
+	it('Game score should be 20 when game is over if roll all 1s', function() {
 		var game = new Game();
 
-  		for(var i = 0; i < 20; i++){
-	  	game.roll(1);
-  		}
+		for(var i = 0; i < 20; i++){
+			game.roll(1);
+		}
 
 		expect(game.getScore()).to.equal(20);
-  	});
+	});
 
-	it('Game score should be 16 when there is 1 spare', function() {
+	it('Game score should be 16 when get a spare and a 3 at 2nd frame', function() {
 		var game = new Game();
 
 		game.roll(5);
