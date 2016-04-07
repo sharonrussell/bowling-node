@@ -1,10 +1,13 @@
 function Game() {}
 
-Game.prototype.roll = function() {
+var score = 0;
+
+Game.prototype.roll = function(pins) {
+	score = score + pins;
 };
 
 Game.prototype.getScore = function(){
-	return 0;
+	return score;
 };
 
 module.exports = Game;
