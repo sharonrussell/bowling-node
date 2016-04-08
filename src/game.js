@@ -1,11 +1,12 @@
-var Frame = require('../src/frame')
+var Frame = require('../src/frame');
 
 function Game() {
 	this._rolls = [];
+	this._frames = [];
 	this._currentRoll = 0;
 
-	for(var i; i < 10; i++){
-		this._frames.push(new Frame([]));
+	for(var i = 0; i < 10; i++){
+		this._frames.push(new Frame());
 	}
 }
 
