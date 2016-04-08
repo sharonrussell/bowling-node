@@ -29,6 +29,7 @@ describe('Game', function() {
 
 		game.roll(5);
     	game.roll(5);
+		//now we are on the second frame (2 tries)
     	game.roll(3);
 
 		expect(game.getScore()).to.equal(16);
