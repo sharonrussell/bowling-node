@@ -25,4 +25,11 @@ describe('Frame', function() {
 
 		expect(frame.isSpare()).to.equal(true);
 	});
+
+	it('Frame should be a strike if no pins left and tries is 2', function() {
+		var frame = new Frame();
+		frame.knockPins(10);
+
+		expect(frame.isStrike()).to.equal(true);
+	});
 });
