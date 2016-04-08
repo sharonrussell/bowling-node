@@ -48,16 +48,9 @@ describe('Game', function() {
 	it('Game current frame should be 5 when rolled 10 times', function(){
 		var game = new Game();
 
-		game.roll(1);
-		game.roll(1);
-		game.roll(1);
-		game.roll(1);
-		game.roll(1);
-		game.roll(1);
-		game.roll(1);
-		game.roll(1);
-		game.roll(1);
-		game.roll(1);
+		for(var i = 0; i < 10; i++){
+			game.roll(1);
+		}
 
 		expect(game.currentFrame()).to.equal(5);
 	});

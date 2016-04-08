@@ -21,13 +21,17 @@ Game.prototype.currentFrame = function() {
 };
 
 Game.prototype.roll = function(pins) {
-	this._rolls[this._currentRoll++] = pins;
+	var frame = this._frames[0];
+	frame.knockPins(pins);
+
+	this._currentRoll++;
 };
 
 Game.prototype.getScore = function(){
 	var score = 0;
-	for (var i = 0; i < this._rolls.length; i++){
-		score += this._rolls[i];
+	for (var i = 0; i < this._frames.length; i++){
+		var currentFrame = this._frames[i];
+		score += (10 - this._frames[i].pins());
 	}
 	return score;
 };
