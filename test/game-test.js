@@ -34,4 +34,31 @@ describe('Game', function() {
 
 		expect(game.getScore()).to.equal(16);
 	});
+
+	it('Game current frame should be 2 when rolled 3 times', function(){
+		var game = new Game();
+
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+
+		expect(game.currentFrame()).to.equal(2);
+	});
+
+	it('Game current frame should be 5 when rolled 10 times', function(){
+		var game = new Game();
+
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+		game.roll(1);
+
+		expect(game.currentFrame()).to.equal(5);
+	});
 });
