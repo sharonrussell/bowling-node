@@ -4,36 +4,48 @@ function Game() {
 	this._rolls = [];
 	this._frames = [];
 	this._currentRoll = 0;
+	this._currentFrame = 0;
+	this._score = 0;
 
 	for(var i = 0; i < 10; i++){
 		this._frames.push(new Frame());
 	}
 }
 
-Game.prototype.currentFrame = function() {
-	if (this._currentRoll % 2 === 0) {
-		var frame = this._currentRoll/2;
-	} else {
-		var frame = this._currentRoll/2 + 0.5;
-	}
+Game.prototype.setCurrentFrame = function() {
 
-	return frame;
+	if (this._currentRoll % 2 === 0) {
+		this._currentFrame = this._currentRoll/2;
+	} else {
+		this._currentFrame = this._currentRoll/2 + 0.5;
+	}
 };
 
-Game.prototype.roll = function(pins) {
-	var frame = this._frames[0];
-	frame.knockPins(pins);
+Game.prototype.currentFrame = function() {
+	var currentFrame = this._currentFrame;
 
+	if(this._currentFrame === 10){
+		currentFrame = this._currentFrame - 1;
+	}
+
+	return currentFrame;
+}
+
+Game.prototype.roll = function(pins) {
 	this._currentRoll++;
+
+	var currentFrame = this.currentFrame();
+	var frame = this._frames[currentFrame];
+	frame.knockPins(pins);
+	this.updateScore(frame);
+	this.setCurrentFrame();
+};
+
+Game.prototype.updateScore = function(currentFrame) {
 };
 
 Game.prototype.getScore = function(){
-	var score = 0;
-	for (var i = 0; i < this._frames.length; i++){
-		var currentFrame = this._frames[i];
-		score += (10 - this._frames[i].pins());
-	}
-	return score;
+	return this._score;
 };
 
 module.exports = Game;
