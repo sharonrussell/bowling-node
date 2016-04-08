@@ -10,4 +10,11 @@ describe('Frame', function() {
 
     	expect(frame.pins()).to.equal(5);
 	});
+
+	it('Frame tries should go down when knockPins', function() {
+		var frame = new Frame();
+		frame.knockPins(5);
+
+		expect(frame.tries()).to.equal(1);
+	});
 });
