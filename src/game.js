@@ -1,6 +1,12 @@
+var Frame = require('../src/frame')
+
 function Game() {
 	this._rolls = [];
 	this._currentRoll = 0;
+
+	for(var i; i < 10; i++){
+		this._frames.push(new Frame([]));
+	}
 }
 
 Game.prototype.roll = function(pins) {
