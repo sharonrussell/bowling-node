@@ -17,4 +17,12 @@ describe('Frame', function() {
 
 		expect(frame.tries()).to.equal(1);
 	});
+
+	it('Frame should be a spare if no pins left and tries is 1', function() {
+		var frame = new Frame();
+		frame.knockPins(5);
+		frame.knockPins(5);
+
+		expect(frame.isSpare()).to.equal(true);
+	});
 });
