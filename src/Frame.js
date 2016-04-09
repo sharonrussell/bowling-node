@@ -9,7 +9,7 @@ Frame.prototype.knockPins = function(pins) {
 	this._pins -= pins;
 
 	if(this._pins === 0) {
-		
+
 		if(this._tries === 1) {
 			this._isSpare = true;
 		} else {
@@ -34,6 +34,12 @@ Frame.prototype.isStrike = function() {
 
 Frame.prototype.tries = function() {
 	return this._tries;
+}
+
+Frame.prototype.score = function() {
+	var score = (10 - this._pins);
+	console.log("Score is: " + score);
+	return score;
 }
 
 module.exports = Frame;

@@ -54,4 +54,14 @@ describe('Game', function() {
 
 		expect(game.currentFrame()).to.equal(5);
 	});
+
+	it('Game current frame should be 7 when rolled 14 times', function(){
+		var game = new Game();
+
+		for(var i = 0; i < 14; i++){
+			game.roll(1);
+		}
+
+		expect(game.currentFrame()).to.equal(7);
+	});
 });

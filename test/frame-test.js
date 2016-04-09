@@ -33,10 +33,17 @@ describe('Frame', function() {
 		expect(frame.isStrike()).to.equal(true);
 	});
 
-	it('Frame should calculate its score', function() {
+	it('Frame should calculate its score correctly when 3 pins knocked', function() {
 		var frame = new Frame();
 		frame.knockPins(3);
 
 		expect(frame.score()).to.equal(3);
+	});
+
+	it('Frame should calculate its score correctly when 6 pins knocked', function() {
+		var frame = new Frame();
+		frame.knockPins(6);
+
+		expect(frame.score()).to.equal(6);
 	});
 });

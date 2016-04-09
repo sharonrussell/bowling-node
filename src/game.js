@@ -13,39 +13,33 @@ function Game() {
 }
 
 Game.prototype.setCurrentFrame = function() {
-
 	if (this._currentRoll % 2 === 0) {
-		this._currentFrame = this._currentRoll/2;
-	} else {
-		this._currentFrame = this._currentRoll/2 + 0.5;
+		this._currentFrame++;
 	}
-};
+
+	if (this._currentFrame === 10) {
+		this._currentFrame--;
+	}
+}
 
 Game.prototype.currentFrame = function() {
-	var currentFrame = this._currentFrame;
-
-	if(this._currentFrame === 10){
-		currentFrame = this._currentFrame - 1;
-	}
-
-	return currentFrame;
+	return this._currentFrame;
 }
 
 Game.prototype.roll = function(pins) {
-	this._currentRoll++;
-
-	var currentFrame = this.currentFrame();
-	var frame = this._frames[currentFrame];
+	var frame = this._frames[this._currentFrame];
 	frame.knockPins(pins);
 	this.updateScore(frame);
 	this.setCurrentFrame();
-};
+	this._currentRoll++;
+}
 
-Game.prototype.updateScore = function(currentFrame) {
-};
+Game.prototype.updateScore = function(frame) {
+	this._score += frame.score();
+}
 
 Game.prototype.getScore = function(){
 	return this._score;
-};
+}
 
 module.exports = Game;
