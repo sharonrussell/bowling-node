@@ -1,35 +1,27 @@
-function Frame() {
-	this._pins = 10;
-	this._tries = 2;
+function Frame(number) {
+	this._startPins = 10;
+	this._pinsKnockedDown = 0;
+	this._tries = 0;
 	this._isSpare = false;
 	this._isStrike = false;
+	this._canBowl = true;
+	this._frameNumber = number;
 }
 
 Frame.prototype.knockPins = function(pins) {
-	this._pins -= pins;
+	this._tries++
 
-	if(this._pins === 0) {
-
-		if(this._tries === 1) {
-			this._isSpare = true;
-		} else {
-			this._isStrike = true;
-		}
+	if(this._pinsKnockedDown === 10 || this._tries === 2) {
+		this._canBowl = false;
 	}
 
-	this._tries--;
+	if (this._canBowl) {
+		this._pinsKnockedDown += pins;
+	}
 }
 
 Frame.prototype.pins = function() {
-	return this._pins;
-}
-
-Frame.prototype.isSpare = function() {
-	return this._isSpare;
-}
-
-Frame.prototype.isStrike = function() {
-	return this._isStrike;
+	return this._startPins - this._pinsKnockedDown;
 }
 
 Frame.prototype.tries = function() {
@@ -37,9 +29,15 @@ Frame.prototype.tries = function() {
 }
 
 Frame.prototype.score = function() {
-	var score = (10 - this._pins);
-	console.log("Score is: " + score);
-	return score;
+	return this._pinsKnockedDown;
+}
+
+Frame.prototype.canBowl = function() {
+	return this._canBowl;
+}
+
+Frame.prototype.number = function() {
+	return this._frameNumber;
 }
 
 module.exports = Frame;

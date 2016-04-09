@@ -42,26 +42,26 @@ describe('Game', function() {
 		game.roll(1);
 		game.roll(1);
 
-		expect(game.currentFrame()).to.equal(2);
+		expect(game.currentFrame().number()).to.equal(2);
 	});
 
-	it('Game current frame should be 5 when rolled 10 times', function(){
+	it('Game current frame should be 6 when rolled 10 times', function(){
 		var game = new Game();
 
 		for(var i = 0; i < 10; i++){
 			game.roll(1);
 		}
 
-		expect(game.currentFrame()).to.equal(5);
+		expect(game.currentFrame().number()).to.equal(6);
 	});
 
-	it('Game current frame should be 7 when rolled 14 times', function(){
+	it('Game current frame should be 8 when rolled 14 times', function(){
 		var game = new Game();
 
 		for(var i = 0; i < 14; i++){
 			game.roll(1);
 		}
 
-		expect(game.currentFrame()).to.equal(7);
+		expect(game.currentFrame().number()).to.equal(8);
 	});
 });

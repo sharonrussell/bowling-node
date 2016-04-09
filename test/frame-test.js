@@ -11,26 +11,11 @@ describe('Frame', function() {
     	expect(frame.pins()).to.equal(5);
 	});
 
-	it('Frame tries should go down when knockPins', function() {
+	it('Frame tries should go up when knockPins', function() {
 		var frame = new Frame();
 		frame.knockPins(5);
 
 		expect(frame.tries()).to.equal(1);
-	});
-
-	it('Frame should be a spare if no pins left and tries is 1', function() {
-		var frame = new Frame();
-		frame.knockPins(5);
-		frame.knockPins(5);
-
-		expect(frame.isSpare()).to.equal(true);
-	});
-
-	it('Frame should be a strike if no pins left and tries is 2', function() {
-		var frame = new Frame();
-		frame.knockPins(10);
-
-		expect(frame.isStrike()).to.equal(true);
 	});
 
 	it('Frame should calculate its score correctly when 3 pins knocked', function() {
@@ -45,5 +30,13 @@ describe('Frame', function() {
 		frame.knockPins(6);
 
 		expect(frame.score()).to.equal(6);
+	});
+
+	it('Frame should not allow another bowl if rolled twice and no strike', function () {
+		var frame = new Frame();
+		frame.knockPins(3);
+		frame.knockPins(3);
+
+		expect(frame.canBowl()).to.equal(false);
 	});
 });

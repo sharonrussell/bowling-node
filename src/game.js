@@ -1,41 +1,36 @@
 var Frame = require('../src/frame');
 
 function Game() {
-	this._rolls = [];
 	this._frames = [];
-	this._currentRoll = 0;
 	this._currentFrame = 0;
 	this._score = 0;
 
 	for(var i = 0; i < 10; i++){
-		this._frames.push(new Frame());
+		this._frames.push(new Frame(i+1));
 	}
 }
 
-Game.prototype.setCurrentFrame = function() {
-	if (this._currentRoll % 2 === 0) {
-		this._currentFrame++;
-	}
+Game.prototype.setCurrentFrame = function(frame) {
+	var frame = this._frames[this._currentFrame];
 
-	if (this._currentFrame === 10) {
-		this._currentFrame--;
+	if(!frame.canBowl()){
+		this._currentFrame++;
 	}
 }
 
 Game.prototype.currentFrame = function() {
-	return this._currentFrame;
+	return this._frames[this._currentFrame];
 }
 
 Game.prototype.roll = function(pins) {
-	var frame = this._frames[this._currentFrame];
+	var frame = this.currentFrame();
 	frame.knockPins(pins);
-	this.updateScore(frame);
+	this.updateScore();
 	this.setCurrentFrame();
-	this._currentRoll++;
 }
 
-Game.prototype.updateScore = function(frame) {
-	this._score += frame.score();
+Game.prototype.updateScore = function() {
+	this._score += this.currentFrame().score();
 }
 
 Game.prototype.getScore = function(){
