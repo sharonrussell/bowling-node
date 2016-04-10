@@ -21,7 +21,6 @@ describe('Game', function() {
 			game.roll(1);
 			var score = game.getScore();
 			var number = i+1;
-			console.log("Roll " + number + " score " + score);
 		}
 
 		expect(game.getScore()).to.equal(20);

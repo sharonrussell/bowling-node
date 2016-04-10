@@ -6,6 +6,7 @@ function Frame(number) {
 	this._isStrike = false;
 	this._canBowl = true;
 	this._frameNumber = number;
+	this._spareBonus = false;
 }
 
 Frame.prototype.knockPins = function(pins) {
@@ -27,7 +28,11 @@ Frame.prototype.tries = function() {
 }
 
 Frame.prototype.score = function() {
-	return this._pinsKnockedDown;
+	if (!this._spareBonus) {
+		return this._pinsKnockedDown;
+	} else {
+		return this._pinsKnockedDown * 2;
+	}
 }
 
 Frame.prototype.canBowl = function() {
@@ -39,8 +44,11 @@ Frame.prototype.number = function() {
 }
 
 Frame.prototype.isSpare = function() {
-	console.log(this._pinsKnockedDown);
 	return this._pinsKnockedDown === 10 && this._tries === 2;
+}
+
+Frame.prototype.hasSpareBonus = function() {
+	this._spareBonus = true;
 }
 
 module.exports = Frame;
