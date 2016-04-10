@@ -64,7 +64,7 @@ Frame.prototype.hasStrikeBonus = function() {
 }
 
 Frame.prototype._updatePinsKnockedDown = function(pins) {
-	if (this._tries < 2) {
+	if (this._tries === 1) {
 		this._pinsKnockedInFirstTry += pins;
 	} else {
 		this._pinsKnockedInSecondTry += pins;

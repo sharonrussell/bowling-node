@@ -19,8 +19,7 @@ describe('Game', function() {
 
 		for(var i = 0; i < 20; i++){
 			game.roll(1);
-			var score = game.getScore();
-			var number = i+1;
+			console.log(game.currentFrame());
 		}
 
 		expect(game.getScore()).to.equal(20);
@@ -49,24 +48,24 @@ describe('Game', function() {
 		expect(game.currentFrame().number()).to.equal(2);
 	});
 
-	it('Game current frame should be 6 when rolled 10 times', function(){
+	it('Game current frame should be 5 when rolled 9 times', function(){
 		var game = new Game();
 
-		for(var i = 0; i < 10; i++){
+		for(var i = 0; i < 9; i++){
 			game.roll(1);
 		}
 
-		expect(game.currentFrame().number()).to.equal(6);
+		expect(game.currentFrame().number()).to.equal(5);
 	});
 
-	it('Game current frame should be 8 when rolled 14 times', function(){
+	it('Game current frame should be 7 when rolled 13 times', function(){
 		var game = new Game();
 
-		for(var i = 0; i < 14; i++){
+		for(var i = 0; i < 13; i++){
 			game.roll(1);
 		}
 
-		expect(game.currentFrame().number()).to.equal(8);
+		expect(game.currentFrame().number()).to.equal(7);
 	});
 
 	it('Game score should be 30 if get a strike and next 2 rolls are 5s', function(){
@@ -75,8 +74,8 @@ describe('Game', function() {
 		game.roll(10);
 		console.log(game.currentFrame());
 		game.roll(5);
-		console.log(game.currentFrame());
 		game.roll(5);
+		console.log(game.currentFrame());
 
 		expect(game.getScore()).to.equal(30);
 	});

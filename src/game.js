@@ -24,13 +24,17 @@ Game.prototype.currentFrame = function() {
 
 Game.prototype.roll = function(pins) {
 	var frame = this.currentFrame();
-	frame.knockPins(pins);
+
+	if (frame.canBowl()) {
+		frame.knockPins(pins);
+	}
+
 	this.updateScore(frame);
 	this.setCurrentFrame();
 }
 
 Game.prototype.updateScore = function(frame) {
-	if(!frame.canBowl()) {
+	if (!frame.canBowl()){
 		this._calculateScore(frame);
 	}
 }
@@ -39,8 +43,7 @@ Game.prototype._calculateScore = function(frame) {
 	this._score += frame.score();
 
 	if (frame.isStrike() && frame.number() !== 10){
-		console.log("I'm a strike!")
-		this._frames[this._currentFrame].hasStrikeBonus();
+		this._frames[this._currentFrame+1].hasStrikeBonus();
 	}
 
 	if (frame.isSpare() && frame.number() !== 10){
