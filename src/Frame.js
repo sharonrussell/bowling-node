@@ -15,9 +15,7 @@ Frame.prototype.knockPins = function(pins) {
 		this._canBowl = false;
 	}
 
-	if (this._canBowl) {
-		this._pinsKnockedDown += pins;
-	}
+	this._pinsKnockedDown += pins;
 }
 
 Frame.prototype.pins = function() {
@@ -38,6 +36,11 @@ Frame.prototype.canBowl = function() {
 
 Frame.prototype.number = function() {
 	return this._frameNumber;
+}
+
+Frame.prototype.isSpare = function() {
+	console.log(this._pinsKnockedDown);
+	return this._pinsKnockedDown === 10 && this._tries === 2;
 }
 
 module.exports = Frame;

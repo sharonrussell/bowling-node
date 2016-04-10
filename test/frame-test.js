@@ -39,4 +39,12 @@ describe('Frame', function() {
 
 		expect(frame.canBowl()).to.equal(false);
 	});
+
+	it('Frame should know when it is a spare', function() {
+		var frame = new Frame();
+		frame.knockPins(3);
+		frame.knockPins(7);
+
+		expect(frame.isSpare()).to.equal(true);
+	});
 });
