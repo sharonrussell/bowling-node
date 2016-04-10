@@ -32,6 +32,7 @@ describe('Game', function() {
 		game.roll(5);
     	game.roll(5);
 		//now we are on the second frame (2 tries)
+		console.log(game.currentFrame())
     	game.roll(3);
     	game.roll(0);
 
@@ -72,7 +73,9 @@ describe('Game', function() {
 		var game = new Game();
 
 		game.roll(10);
+		console.log(game.currentFrame());
 		game.roll(5);
+		console.log(game.currentFrame());
 		game.roll(5);
 
 		expect(game.getScore()).to.equal(30);

@@ -38,7 +38,12 @@ Game.prototype.updateScore = function(frame) {
 Game.prototype._calculateScore = function(frame) {
 	this._score += frame.score();
 
-	if 	(frame.isSpare() && frame.number() !== 10){
+	if (frame.isStrike() && frame.number() !== 10){
+		console.log("I'm a strike!")
+		this._frames[this._currentFrame].hasStrikeBonus();
+	}
+
+	if (frame.isSpare() && frame.number() !== 10){
 		this._frames[this._currentFrame+1].hasSpareBonus();
 	}
 }
