@@ -31,22 +31,20 @@ Game.prototype.roll = function(pins) {
 
 Game.prototype.updateScore = function(frame) {
 	if(!frame.canBowl()) {
-		this._score += frame.score();
+		this._calculateScore(frame);
 	}
+}
 
-	if (frame.isSpare() && this._currentFrame < 9){
-		var nextFrame = this._frames[this._currentFrame+1];
-		this._addSpareBonus(nextFrame);
+Game.prototype._calculateScore = function(frame) {
+	this._score += frame.score();
+
+	if 	(frame.isSpare() && frame.number() !== 10){
+		this._frames[this._currentFrame+1].hasSpareBonus();
 	}
 }
 
 Game.prototype.getScore = function(){
 	return this._score;
-}
-
-
-Game.prototype._addSpareBonus = function(frame){
-	frame.hasSpareBonus();
 }
 
 module.exports = Game;

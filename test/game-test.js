@@ -67,4 +67,14 @@ describe('Game', function() {
 
 		expect(game.currentFrame().number()).to.equal(8);
 	});
+
+	it('Game score should be 30 if get a strike and next 2 rolls are 5s', function(){
+		var game = new Game();
+
+		game.roll(10);
+		game.roll(5);
+		game.roll(5);
+
+		expect(game.getScore()).to.equal(30);
+	});
 });
