@@ -66,11 +66,13 @@ Frame.prototype.hasStrikeBonus = function() {
 Frame.prototype._updatePinsKnockedDown = function(pins) {
 	if (this._tries === 1) {
 		this._pinsKnockedInFirstTry += pins;
-	} else {
+		this._checkForStrike(pins);
+
+	} else if (!this._isStrike) {
 		this._pinsKnockedInSecondTry += pins;
 	}
 
-	this._pinsKnockedDown = (this._pinsKnockedInFirstTry + this._pinsKnockedInSecondTry);
+	this._pinsKnockedDown = this._pinsKnockedInFirstTry + this._pinsKnockedInSecondTry;
 }
 
 Frame.prototype._strikeScore = function() {
@@ -79,6 +81,13 @@ Frame.prototype._strikeScore = function() {
 
 Frame.prototype._spareScore = function() {
 	return (this._pinsKnockedInFirstTry * 2) + this._pinsKnockedInSecondTry;
+}
+
+Frame.prototype._checkForStrike = function(pins) {
+	if (pins === 10) {
+		this._isStrike = true;
+		this._canBowl = false;
+	}
 }
 
 module.exports = Frame;

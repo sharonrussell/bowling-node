@@ -19,7 +19,6 @@ describe('Game', function() {
 
 		for(var i = 0; i < 20; i++){
 			game.roll(1);
-			console.log(game.currentFrame());
 		}
 
 		expect(game.getScore()).to.equal(20);
@@ -31,7 +30,6 @@ describe('Game', function() {
 		game.roll(5);
     	game.roll(5);
 		//now we are on the second frame (2 tries)
-		console.log(game.currentFrame())
     	game.roll(3);
     	game.roll(0);
 
@@ -72,10 +70,8 @@ describe('Game', function() {
 		var game = new Game();
 
 		game.roll(10);
-		console.log(game.currentFrame());
 		game.roll(5);
 		game.roll(5);
-		console.log(game.currentFrame());
 
 		expect(game.getScore()).to.equal(30);
 	});

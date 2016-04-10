@@ -28,9 +28,8 @@ Game.prototype.roll = function(pins) {
 	if (frame.canBowl()) {
 		frame.knockPins(pins);
 	}
-
-	this.updateScore(frame);
 	this.setCurrentFrame();
+	this.updateScore(frame);
 }
 
 Game.prototype.updateScore = function(frame) {
@@ -42,12 +41,14 @@ Game.prototype.updateScore = function(frame) {
 Game.prototype._calculateScore = function(frame) {
 	this._score += frame.score();
 
+	var currentFrame = this._frames[this._currentFrame];
+	
 	if (frame.isStrike() && frame.number() !== 10){
-		this._frames[this._currentFrame+1].hasStrikeBonus();
+		currentFrame.hasStrikeBonus();
 	}
 
 	if (frame.isSpare() && frame.number() !== 10){
-		this._frames[this._currentFrame+1].hasSpareBonus();
+		currentFrame.hasSpareBonus();
 	}
 }
 
