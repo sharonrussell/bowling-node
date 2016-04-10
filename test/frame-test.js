@@ -47,4 +47,11 @@ describe('Frame', function() {
 
 		expect(frame.isSpare()).to.equal(true);
 	});
+
+	it('Frame should know when it is a strike', function() {
+		var frame = new Frame();
+		frame.knockPins(10);
+
+		expect(frame.isStrike()).to.equal(true);
+	});
 });
